@@ -1,0 +1,41 @@
+{
+    "request": {
+        "type": "LatLon",
+        "query": "Lat 19.05 and Lon 72.86",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "Bombay",
+        "country": "India",
+        "region": "Maharashtra",
+        "lat": "18.975",
+        "lon": "72.826",
+        "timezone_id": "Asia\/Kolkata",
+        "localtime": "2024-12-28 19:25",
+        "localtime_epoch": 1735413900,
+        "utc_offset": "5.50"
+    },
+    "current": {
+        "observation_time": "01:55 PM",
+        "temperature": 26,
+        "weather_code": 143,
+        "weather_icons": [
+            "https:\/\/cdn.worldweatheronline.com\/images\/wsymbols01_png_64\/wsymbol_0006_mist.png"
+        ],
+        "weather_descriptions": [
+            "Haze"
+        ],
+        "wind_speed": 19,
+        "wind_degree": 345,
+        "wind_dir": "NNW",
+        "pressure": 1014,
+        "precip": 0,
+        "humidity": 61,
+        "cloudcover": 25,
+        "feelslike": 28,
+        "uv_index": 0,
+        "visibility": 2,
+        "is_day": "no"
+    }
+}

@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  @apply w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+/* styles/globals.css or your custom CSS file */
+.user-profile-card {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  color: #333;
+  padding: 16px;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.user-profile-card .user-icon {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  padding: 12px;
+  margin-bottom: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile-card .user-icon i {
+  font-size: 24px;
+  color: #555;
+}
+
+.user-profile-card .user-details {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.user-profile-card p {
+  margin: 4px 0;
+}
+
+.user-profile-card strong {
+  color: #444;
+}
+
