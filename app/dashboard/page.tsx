@@ -38,7 +38,7 @@ export default function Dashboard() {
         setLocationName(locationName);
         const temperaure = searchCity.current.temperature;
         const condition = searchCity.current.weather_descriptions[0];
-        const icon = searchCity.current.weather_icons;
+        const icon = searchCity.current.weather_icons[0];
     // Simulate fetching weather data for the searched location
     const newWeather: WeatherData = {
       location: locationName,
@@ -162,7 +162,7 @@ export default function Dashboard() {
         setLocationName(locationName);
         const temperaure = result.current.temperature;
         const condition = result.current.weather_descriptions[0];
-        const icon = result.current.weather_icons;
+        const icon = result.current.weather_icons[0];
 
         const currentLocationWeather: WeatherData = {
               location: locationName, // Use the location name here

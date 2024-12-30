@@ -1,5 +1,6 @@
 
 import NextImage from "next/image"; // Import with alias to avoid conflicts
+import { useRouter } from "next/navigation";
 
 
 // components/WeatherCard.tsx
@@ -9,24 +10,34 @@ type WeatherCardProps = {
     condition: string;
     icon : string;
   };
+
   
   export default function WeatherCard({ location, temperature, condition, icon }: WeatherCardProps) {
+    // console.log("icon : ", icon)
+    const router = useRouter();
+
+    const handleCardClick = () => {
+      // ${encodeURIComponent(location)}
+      // Navigate to the detailed weather forecast page
+      router.push(`/forecast?location=Mumbai`);
+    };
+
     return (
       // <div className="bg-white shadow-md rounded-lg p-4 w-60 m-2">
       //   <h2 className="text-xl font-bold">{location}</h2>
       //   <p className="text-lg">{temperature} °C</p>
       //   <p className="text-gray-600">{description}</p>
       // </div>
-      <div className="relative">
+      <div className="relative cursor-pointer" onClick={handleCardClick}>
       <div
         className={`p-6 rounded-lg shadow-md w-64 ${
-          condition === "mist"
+          condition === "Mist"
             ? "bg-gray-200"
             : condition === 'Haze'
             ? "bg-gray-200"
-            : condition === "sunny"
+            : condition === "Sunny"
             ? "bg-yellow-300"
-            : condition === "cloudy"
+            : condition === "Cloudy"
             ? "bg-gray-400"
             : "bg-white"
         }`}
@@ -44,29 +55,6 @@ type WeatherCardProps = {
           priority
           className="w-8 h-8"
         />
-    
-    {/* {condition === "mist" && (<img src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png" alt="Mist Icon" className="w-8 h-8" />)}
-    {condition === "Haze" && (
-      <img
-        src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
-        alt="Mist Icon"
-        className="w-8 h-8"
-      />
-    )}
-    {condition === "sunny" && (
-      <img
-        src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
-        alt="Sunny Icon"
-        className="w-8 h-8"
-      />
-    )}
-    {condition === "cloudy" && (
-      <img
-        src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0003_cloudy.png"
-        alt="Cloudy Icon"
-        className="w-8 h-8"
-      />
-    )} */}
   </div>
     </div>
     
