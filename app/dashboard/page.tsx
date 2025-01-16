@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Header from "../components/WetherForcastDashboard/Header";
-import WeatherCard from "../components/WetherForcastDashboard/WeatherCard";
+import Header from "../components/WetherForecastDashboard/Header";
+import WeatherCard from "../components/WetherForecastDashboard/WeatherCard";
 // import axios from "axios";
 
 interface WeatherData {
@@ -10,6 +10,10 @@ interface WeatherData {
   temperature: string;
   condition: string;
   icon : string;
+  lat_long: {
+    latitude?: number;
+    longitude?: number;
+  };
 }
 
 // const API_KEY = "86007a60318c49c5ac8d5790a7937be8"; // Replace with your OpenCage API key
@@ -17,7 +21,7 @@ interface WeatherData {
   //  const OPENWEATHER_API_KEY = '39791f244d600632bb34b569387fa15d'
   const WEATHERSTACK_API_KEY = 'fdd138d954f3c6ebc4db2ba88a7953e3'
 export default function Dashboard() {
-  const [location, setLocation] = useState<{ lat: number; long: number } | null>(null);
+  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [locationName, setLocationName] = useState<string>(""); // To store the fetched location name
   const [error, setError] = useState<string | null>(null);
   const [weatherCards, setWeatherCards] = useState<WeatherData[]>([]);
@@ -34,6 +38,7 @@ export default function Dashboard() {
     if (!searchInput) return;
     const searchCity = await getLocationData(searchInput);
     console.log("searchCity = > ", searchCity);
+    console.log("locationlatlong ", location);
         const locationName = searchCity.location.name; // Get the formatted address
         setLocationName(locationName);
         const temperaure = searchCity.current.temperature;
@@ -44,8 +49,14 @@ export default function Dashboard() {
       location: locationName,
       temperature: temperaure,//(Math.random() * 35).toFixed(1),
       condition: condition,//"Cloudy",
-      icon: icon
+      icon: icon,
+      lat_long: { 
+        latitude: location?.latitude ?? 0, // Default to 0 if undefined
+        longitude: location?.longitude ?? 0, // Default to 0 if undefined
+      },
     };
+
+    console.log("newwetherCard -- > ", newWeather);
 
     setWeatherCards((prevCards) => [...prevCards, newWeather]);
     setSearchInput("");
@@ -85,8 +96,8 @@ export default function Dashboard() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation({
-            lat: position.coords.latitude,
-            long: position.coords.longitude,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
           });
           setError(null);
 
@@ -168,7 +179,11 @@ export default function Dashboard() {
               location: locationName, // Use the location name here
               temperature: temperaure,//(Math.random() * 35).toFixed(1),
               condition: condition,//"Sunny",
-              icon : icon
+              icon : icon,
+              lat_long: { 
+                latitude: location?.latitude ?? 0, // Default to 0 if undefined
+                longitude: location?.longitude ?? 0, // Default to 0 if undefined
+              },
             };
     
             // Add the current location weather only once
@@ -229,6 +244,7 @@ export default function Dashboard() {
 
       {/* Display weather cards */}
       <div className="flex flex-wrap justify-center gap-4 p-4">
+      {/* <pre>{JSON.stringify(weatherCards, null, 2)}</pre> Display debug info */}
         {weatherCards.map((weather, index) => (
           <WeatherCard
             key={index}
@@ -236,6 +252,7 @@ export default function Dashboard() {
             temperature={weather.temperature}
             condition={weather.condition}
             icon={weather.icon}
+            lat_long={weather.lat_long}
           />
         ))}
 

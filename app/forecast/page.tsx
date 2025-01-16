@@ -1,5 +1,5 @@
-import Forecast from "../components/Forecast/Forecast";
+import Forecast from "../components/WetherForecastDashboard/forecastDetails";
 
 export default function Register() {
-    return <Forecast></Forecast>
+    return <Forecast location={undefined} condition={undefined} temperature={undefined} lat_long={undefined} onClose={undefined}></Forecast>
 }
